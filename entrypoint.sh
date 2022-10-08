@@ -2,7 +2,7 @@
 
 set -e
 
-CONFIG_FILE="/appdata/.GridcoinResearch/gridcoinresearch.conf"
+CONFIG_FILE="/root/.GridcoinResearch/gridcoinresearch.conf"
 
 echo -e "rpcuser=grc_user" >> "${CONFIG_FILE}"
 echo -e "rpcpassword=grc_pass" >> "${CONFIG_FILE}"

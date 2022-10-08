@@ -38,11 +38,10 @@ COPY --from=builder /build/Gridcoin-Research/src/gridcoinresearchd /usr/local/bi
 COPY --from=builder /build/Gridcoin-Research/doc/gridcoinresearch.1 /usr/local/man/man1/
 COPY --from=builder /build/Gridcoin-Research/doc/gridcoinresearchd.1 /usr/local/man/man1/
 
-VOLUME /appdata
-VOLUME /appdata/.GridcoinResearch/wallet.dat
+VOLUME /root/.GridcoinResearch/wallet.dat
 VOLUME /var/lib/boinc
 
 EXPOSE 32749
 
-WORKDIR /appdata
+WORKDIR /root
 CMD /usr/local/bin/entrypoint.sh
