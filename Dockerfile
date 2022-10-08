@@ -31,7 +31,7 @@ RUN apt update \
  && mkdir -p /appdata/.GridcoinResearch 
 
 ADD entrypoint.sh /usr/local/bin
-RUN chmod 755 /usr/local/bin
+RUN chmod 755 /usr/local/bin/entrypoint.sh
 
 COPY --from=builder /build/Gridcoin-Research/src/gridcoinresearchd /usr/local/bin/
 COPY --from=builder /build/Gridcoin-Research/doc/gridcoinresearch.1 /usr/local/man/man1/
