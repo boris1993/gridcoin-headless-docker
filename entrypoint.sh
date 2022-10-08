@@ -15,3 +15,12 @@ if [ ! -f "$CONFIG_FILE" ]; then
 fi
 
 gridcoinresearchd
+
+if [ -n "$PASSPHRASE" ]; then
+    gridcoinresearchd walletpassphrase "${PASSPHRASE}" 3600 true
+
+    while true; do
+        gridcoinresearchd walletpassphrase "${PASSPHRASE}" 3600 true
+        sleep 3000
+    done
+fi
