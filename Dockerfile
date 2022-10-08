@@ -38,7 +38,7 @@ COPY --from=builder /build/Gridcoin-Research/src/gridcoinresearchd /usr/local/bi
 COPY --from=builder /build/Gridcoin-Research/doc/gridcoinresearch.1 /usr/local/man/man1/
 COPY --from=builder /build/Gridcoin-Research/doc/gridcoinresearchd.1 /usr/local/man/man1/
 
-VOLUME /root/.GridcoinResearch/wallet.dat
+VOLUME /root/.GridcoinResearch
 VOLUME /var/lib/boinc
 
 EXPOSE 32749
