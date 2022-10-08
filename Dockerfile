@@ -27,7 +27,7 @@ RUN apt update \
         libboost-thread1.74.0 \
         libdb5.3++ \
         libcurl3-gnutls \
-        libzip5 \
+        libzip4 \
  && mkdir -p /appdata/.GridcoinResearch 
 
 ADD entrypoint.sh /usr/local/bin
