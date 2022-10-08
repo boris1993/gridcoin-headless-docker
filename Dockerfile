@@ -28,6 +28,7 @@ RUN apt update \
         libdb5.3++ \
         libcurl3-gnutls \
         libzip4 \
+        libminiupnpc17 \
  && mkdir -p /appdata/.GridcoinResearch 
 
 ADD entrypoint.sh /usr/local/bin
