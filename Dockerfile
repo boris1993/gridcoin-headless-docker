@@ -20,11 +20,11 @@ RUN apt update \
  && apt upgrade -y \
  && apt install -y \
         curl \
-        libboost-chrono1.71.0 \
-        libboost-filesystem1.71.0 \
-        libboost-iostreams1.71.0 \
-        libboost-program-options1.71.0 \
-        libboost-thread1.71.0 \
+        libboost-chrono1.74.0 \
+        libboost-filesystem1.74.0 \
+        libboost-iostreams1.74.0 \
+        libboost-program-options1.74.0 \
+        libboost-thread1.74.0 \
         libdb5.3++ \
         libcurl3-gnutls \
         libzip5 \
