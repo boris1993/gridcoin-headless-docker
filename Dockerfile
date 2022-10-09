@@ -20,6 +20,7 @@ RUN apt update \
  && apt upgrade -y \
  && apt install -y \
         curl \
+        cron \
         libboost-chrono1.74.0 \
         libboost-filesystem1.74.0 \
         libboost-iostreams1.74.0 \

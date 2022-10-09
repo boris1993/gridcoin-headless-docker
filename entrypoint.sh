@@ -5,6 +5,7 @@ set -e
 CONFIG_FILE="/root/.GridcoinResearch/gridcoinresearch.conf"
 
 if [ ! -f "$CONFIG_FILE" ]; then
+    echo -e "Generating the default gridcoinresearch.conf"
     echo -e "rpcuser=grc_user" >> "${CONFIG_FILE}"
     echo -e "rpcpassword=grc_pass" >> "${CONFIG_FILE}"
     echo -e "printtoconsole=1" >> "${CONFIG_FILE}"
@@ -14,13 +15,10 @@ if [ ! -f "$CONFIG_FILE" ]; then
     fi
 fi
 
-gridcoinresearchd
-
 if [ -n "$PASSPHRASE" ]; then
-    gridcoinresearchd walletpassphrase "${PASSPHRASE}" 3600 true
-
-    while true; do
-        gridcoinresearchd walletpassphrase "${PASSPHRASE}" 3600 true
-        sleep 3000
-    done
+    echo -e "Passphrase is given, setting cron job to unlock the wallet periodically"
+    echo -e "*/5 * * * * gridcoinresearchd -debug -printtoconsole walletpassphrase "${PASSPHRASE}" 300 true" > /etc/cron.d/unlock-wallet
 fi
+
+echo -e "Starting gridcoinresearchd"
+gridcoinresearchd
