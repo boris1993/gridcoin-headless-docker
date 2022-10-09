@@ -1,12 +1,14 @@
 FROM gridcoincommunity/grc-dev:jammy as builder
 
 ENV TAGGED_VERSION 5.4.0.0
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN mkdir /build
 WORKDIR /build
 
 RUN apt update \
  && apt upgrade -y \
+ && echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash \
  && git clone https://github.com/gridcoin/Gridcoin-Research \
  && cd Gridcoin-Research \
  && git checkout $TAGGED_VERSION \
@@ -15,6 +17,8 @@ RUN apt update \
  && make
 
 FROM ubuntu:jammy as runner
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update \
  && apt upgrade -y \
@@ -30,6 +34,7 @@ RUN apt update \
         libcurl3-gnutls \
         libzip4 \
         libminiupnpc17 \
+ && echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash \
  && mkdir -p /appdata/.GridcoinResearch 
 
 ADD entrypoint.sh /usr/local/bin
