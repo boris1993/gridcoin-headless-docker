@@ -6,6 +6,13 @@ CONFIG_FILE="/root/.GridcoinResearch/gridcoinresearch.conf"
 
 if [ ! -f "$CONFIG_FILE" ]; then
     echo -e "Generating the default gridcoinresearch.conf"
+
+    echo -e "addnode=addnode-us-central.cycy.me" >> "${CONFIG_FILE}"
+    echo -e "addnode=ec2-3-81-39-58.compute-1.amazonaws.com" >> "${CONFIG_FILE}"
+    echo -e "addnode=gridcoin.network" >> "${CONFIG_FILE}"
+    echo -e "addnode=seeds.gridcoin.ifoggz-network.xyz" >> "${CONFIG_FILE}"
+    echo -e "addnode=seed.gridcoin.pl" >> "${CONFIG_FILE}"
+    echo -e "addnode=www.grcpool.com" >> "${CONFIG_FILE}"
     echo -e "rpcuser=grc_user" >> "${CONFIG_FILE}"
     echo -e "rpcpassword=grc_pass" >> "${CONFIG_FILE}"
     echo -e "printtoconsole=1" >> "${CONFIG_FILE}"
