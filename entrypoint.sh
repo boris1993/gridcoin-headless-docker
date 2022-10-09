@@ -28,4 +28,7 @@ if [ -n "$PASSPHRASE" ]; then
 fi
 
 echo -e "Starting gridcoinresearchd"
-gridcoinresearchd
+gridcoinresearchd 2>&1 &
+
+echo -e "Starting up cron"
+/etc/init.d/cron start
