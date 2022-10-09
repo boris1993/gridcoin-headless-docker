@@ -27,8 +27,8 @@ if [ -n "$PASSPHRASE" ]; then
     echo -e "*/5 * * * * gridcoinresearchd -debug -printtoconsole walletpassphrase "${PASSPHRASE}" 300 true" > /etc/cron.d/unlock-wallet
 fi
 
-echo -e "Starting gridcoinresearchd"
-gridcoinresearchd 2>&1 &
-
 echo -e "Starting up cron"
 /etc/init.d/cron start
+
+echo -e "Starting gridcoinresearchd"
+gridcoinresearchd
