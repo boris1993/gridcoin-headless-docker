@@ -3,6 +3,7 @@
 set -e
 
 CONFIG_FILE="/root/.GridcoinResearch/gridcoinresearch.conf"
+LOG_FILE="/tmp/gridcoin.log"
 
 if [ ! -f "$CONFIG_FILE" ]; then
     echo -e "Generating the default gridcoinresearch.conf"
@@ -24,11 +25,13 @@ fi
 
 if [ -n "$PASSPHRASE" ]; then
     echo -e "Passphrase is given, setting cron job to unlock the wallet periodically"
-    echo -e "*/5 * * * * /usr/local/bin/gridcoinresearchd -debug -printtoconsole walletpassphrase "${PASSPHRASE}" 300 true" > /etc/cron.d/unlock-wallet
+    echo -e "*/5 * * * * /usr/local/bin/gridcoinresearchd -debug -printtoconsole walletpassphrase "${PASSPHRASE}" 300 true > ${LOG_FILE} 2>&1" > /etc/cron.d/unlock-wallet
 fi
+
+echo -e "Starting gridcoinresearchd"
+gridcoinresearchd > ${LOG_FILE} 2>&1 &
 
 echo -e "Starting up cron"
 /etc/init.d/cron start
 
-echo -e "Starting gridcoinresearchd"
-gridcoinresearchd
+tail -f ${LOG_FILE}
