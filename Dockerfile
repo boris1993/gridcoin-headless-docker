@@ -25,6 +25,7 @@ RUN apt update \
  && apt install -y \
         curl \
         cron \
+        tzdata \
         libboost-chrono1.74.0 \
         libboost-filesystem1.74.0 \
         libboost-iostreams1.74.0 \
