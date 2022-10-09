@@ -25,10 +25,7 @@ fi
 
 if [ -n "$PASSPHRASE" ]; then
     echo -e "Passphrase is given, setting cron job to unlock the wallet periodically"
-
-    echo -e "#!/bin/bash" >> /etc/cron.hourly/unlock-wallet
-    echo -e "/usr/local/bin/gridcoinresearchd -debug -printtoconsole walletpassphrase "${PASSPHRASE}" 3600 true >> ${LOG_FILE} 2>&1" >> /etc/cron.hourly/unlock-wallet
-    chmod 755 /etc/cron.hourly/unlock-wallet
+    echo -e "*/5 * * * * root /usr/local/bin/gridcoinresearchd -debug -printtoconsole walletpassphrase "${PASSPHRASE}" 300 true >> ${LOG_FILE} 2>&1" >> /etc/crontab
 fi
 
 echo -e "Starting gridcoinresearchd"
