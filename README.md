@@ -55,3 +55,7 @@ services:
       - 32749:32749
 
 ```
+
+## Donation
+
+Love this project? Please consider donating to my address `S4vA3tjgkoBMEWu8EJESmQZbnKtqNPTYFX`.
