@@ -2,6 +2,7 @@ FROM gridcoincommunity/grc-dev:jammy as builder
 
 ENV TAGGED_VERSION 5.4.0.0
 ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Shanghai
 
 RUN mkdir /build
 WORKDIR /build
