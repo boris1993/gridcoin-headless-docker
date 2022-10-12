@@ -8,6 +8,7 @@ WORKDIR /build
 
 RUN apt update \
  && apt upgrade -y \
+ && apt install -y tzdata \
  && echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash \
  && git clone https://github.com/gridcoin/Gridcoin-Research \
  && cd Gridcoin-Research \
