@@ -4,6 +4,7 @@ set -e
 
 CONFIG_FILE="/root/.GridcoinResearch/gridcoinresearch.conf"
 LOG_FILE="/tmp/gridcoin.log"
+PARAMS=""
 
 if [ ! -f "$CONFIG_FILE" ]; then
     echo -e "Generating the default gridcoinresearch.conf"
@@ -28,8 +29,13 @@ if [ -n "$PASSPHRASE" ]; then
     echo -e "*/5 * * * * root /usr/local/bin/gridcoinresearchd -debug -printtoconsole walletpassphrase "${PASSPHRASE}" 295 true >> ${LOG_FILE} 2>&1" >> /etc/crontab
 fi
 
+if [ -n "$SOCKS_PROXY" ]; then
+    echo -e "Using SOCKS5 proxy ${SOCKS_PROXY}"
+    PARAMS+="-proxy=${SOCKS_PROXY}"
+fi
+
 echo -e "Starting gridcoinresearchd"
-gridcoinresearchd > ${LOG_FILE} 2>&1 &
+gridcoinresearchd $PARAMS > ${LOG_FILE} 2>&1 &
 
 echo -e "Starting up cron"
 /etc/init.d/cron start
