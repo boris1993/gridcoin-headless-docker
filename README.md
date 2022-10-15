@@ -25,6 +25,8 @@ docker run \
     -e EMAIL=your@email.com \
     # Optional. Required when your wallet is encrypted
     -e PASSPHRASE=your_wallet_passphrase
+    # Optional. Specify a SOCKS5 proxy
+    -e SOCKS_PROXY=192.168.1.200:7890 \
     -p 32749:32749 \
     boris1993/gridcoin-headless-docker:latest
 ```
@@ -46,6 +48,8 @@ services:
       - EMAIL=your@email.com
       # Optional. Required when your wallet is encrypted
       - PASSPHRASE=your_wallet_passphrase
+      # Optional. Specify a SOCKS5 proxy
+      - SOCKS_PROXY=192.168.1.200:7890
     volumes:
       - /path/to/data/dir:/root/.GridcoinResearch
       # Optional. You can pass your wallet into the container if you want
