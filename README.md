@@ -27,7 +27,11 @@ docker run \
     -e PASSPHRASE=your_wallet_passphrase
     # Optional. Specify a SOCKS5 proxy
     -e SOCKS_PROXY=192.168.1.200:7890 \
-    -p 32749:32749 \
+    # Optional. Only when you want to specify the RPC username
+    -e RPC_USER=your_rpc_username \
+    # Optional. Only when you want to specify the RPC password.
+    # A random string will be used as password by default.
+    -e RPC_PASSWORD=your_rpc_password \
     boris1993/gridcoin-headless-docker:latest
 ```
 
@@ -50,13 +54,16 @@ services:
       - PASSPHRASE=your_wallet_passphrase
       # Optional. Specify a SOCKS5 proxy
       - SOCKS_PROXY=192.168.1.200:7890
+      # Optional. Only when you want to specify the RPC username
+      - RPC_USER=your_rpc_username
+      # Optional. Only when you want to specify the RPC password.
+      # A random string will be used as password by default.
+      - RPC_PASSWORD=your_rpc_password
     volumes:
       - /path/to/data/dir:/root/.GridcoinResearch
       # Optional. You can pass your wallet into the container if you want
       - /path/to/your/wallet/wallet.dat:/root/.GridcoinResearch/wallet.dat
       - /path/to/boinc/data/dir:/var/lib/boinc
-    ports:
-      - 32749:32749
 
 ```
 
