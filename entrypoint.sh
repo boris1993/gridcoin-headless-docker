@@ -15,8 +15,19 @@ if [ ! -f "$CONFIG_FILE" ]; then
     echo -e "addnode=seeds.gridcoin.ifoggz-network.xyz" >> "${CONFIG_FILE}"
     echo -e "addnode=seed.gridcoin.pl" >> "${CONFIG_FILE}"
     echo -e "addnode=www.grcpool.com" >> "${CONFIG_FILE}"
-    echo -e "rpcuser=grc_user" >> "${CONFIG_FILE}"
-    echo -e "rpcpassword=grc_pass" >> "${CONFIG_FILE}"
+
+    if [ -n "$RPC_USER" ]; then
+        echo -e "rpcuser=${RPC_USER}" >> "${CONFIG_FILE}"
+    else
+        echo -e "rpcuser=grc_user" >> "${CONFIG_FILE}"
+    fi
+
+    if [ -n "$RPC_PASSWORD" ]; then
+        echo -e "rpcpassword=${RPC_PASSWORD}" >> "${CONFIG_FILE}"
+    else
+        echo -e "rpcpassword=$(openssl rand -hex 12)" >> "${CONFIG_FILE}"
+    fi
+
     echo -e "printtoconsole=1" >> "${CONFIG_FILE}"
 
     if [ -n "$EMAIL" ]; then
