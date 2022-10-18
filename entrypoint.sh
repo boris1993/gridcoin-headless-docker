@@ -37,7 +37,8 @@ fi
 
 if [ -n "$PASSPHRASE" ]; then
     echo -e "Passphrase is given, setting cron job to unlock the wallet periodically"
-    echo -e "*/5 * * * * root /usr/bin/gridcoinresearchd -debug -printtoconsole walletpassphrase "${PASSPHRASE}" 295 true >> ${LOG_FILE} 2>&1" >> /etc/crontab
+    echo -e "*/5 * * * * root /usr/bin/gridcoinresearchd -debug -printtoconsole walletpassphrase "${PASSPHRASE}" 295 true >> ${LOG_FILE} 2>&1" > /etc/cron.d/unlockwallet
+    chmod 755 /etc/cron.d/unlockwallet
 fi
 
 if [ -n "$SOCKS_PROXY" ]; then
