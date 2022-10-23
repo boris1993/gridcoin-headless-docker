@@ -41,6 +41,10 @@ if [ -n "$PASSPHRASE" ]; then
     chmod 755 /etc/cron.d/unlockwallet
 fi
 
+# Truncate the log every half a month
+echo -e "0 0 */15 * * root echo -e > ${LOG_FILE}" > /etc/cron.d/truncate_log
+chmod 755 /etc/cron.d/truncate_log
+
 if [ -n "$SOCKS_PROXY" ]; then
     echo -e "Using SOCKS5 proxy ${SOCKS_PROXY}"
     PARAMS+="-proxy=${SOCKS_PROXY}"
