@@ -1,6 +1,9 @@
-FROM ubuntu:jammy
+FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
+
+RUN mkdir -p /appdata/.GridcoinResearch
+RUN echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash
 
 RUN apt-get update \
  && apt-get upgrade -y \
@@ -18,14 +21,14 @@ RUN apt-get update \
        libcurl3-gnutls \
        libzip4 \
        libminiupnpc17 \
-       software-properties-common \
- && add-apt-repository -y ppa:gridcoin/gridcoin-stable \
+       software-properties-common
+
+RUN add-apt-repository -y ppa:gridcoin/gridcoin-stable \
  && apt-get update \
- && apt-get install -y gridcoinresearchd \
- && apt-get purge -y software-properties-common \
- && apt-get autoremove -y \
- && echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash \
- && mkdir -p /appdata/.GridcoinResearch 
+ && apt-get install -y gridcoinresearchd
+
+RUN apt-get purge -y software-properties-common \
+ && apt-get autoremove -y
 
 ADD entrypoint.sh /usr/local/bin
 RUN chmod 755 /usr/local/bin/entrypoint.sh
