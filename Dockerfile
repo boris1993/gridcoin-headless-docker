@@ -36,4 +36,4 @@ VOLUME /var/lib/boinc
 EXPOSE 32749
 
 WORKDIR /root
-CMD /usr/local/bin/entrypoint.sh
+CMD ["/usr/local/bin/entrypoint.sh"]
