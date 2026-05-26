@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:resolute
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -12,15 +12,6 @@ RUN apt-get update \
        curl \
        cron \
        tzdata \
-       libboost-chrono1.74.0 \
-       libboost-filesystem1.74.0 \
-       libboost-iostreams1.74.0 \
-       libboost-program-options1.74.0 \
-       libboost-thread1.74.0 \
-       libdb5.3++ \
-       libcurl3-gnutls \
-       libzip4 \
-       libminiupnpc17 \
        software-properties-common
 
 RUN add-apt-repository -y ppa:gridcoin/gridcoin-stable \
